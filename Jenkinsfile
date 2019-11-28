@@ -48,7 +48,7 @@ pipeline {
          
          stage('test'){
              steps{
-                sh "sleep 5"
+                sh "sleep 5 && docker ps -a && curl http://localhost:3303/"
              }
          }
 
