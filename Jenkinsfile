@@ -48,13 +48,13 @@ pipeline {
          
          stage('test'){
              steps{
-                sh "sleep 5 && docker ps -a && curl http://localhost:3303/"
+                 catchError {
+                    sh "sleep 5 && docker ps -a && curl http://localhost:3303/"
+                }
              }
          }
 
-         catchError {
-            sh "echo 'fail'"
-        }
+         
 
          stage('clean docker post'){
              steps{
