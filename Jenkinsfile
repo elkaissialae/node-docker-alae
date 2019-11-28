@@ -14,7 +14,7 @@ pipeline {
              }
          }
 
-         stage('launch database'{
+         stage('launch database'){
              steps {
                  sh "docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v \$(pwd)/.data:/var/lib/postgresql/data -v \$(pwd)/sql:/sql --name nd-db postgres:9.6"
              }
@@ -40,7 +40,7 @@ pipeline {
          
          stage('test'){
              steps{
-                sh "sleep 15 && http://localhost:3000/"
+                sh "sleep 15 && curl http://localhost:3000/"
              }
          }
      }   
