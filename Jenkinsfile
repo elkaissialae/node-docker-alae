@@ -16,19 +16,19 @@ pipeline {
 
          stage('launch database'){
              steps {
-                 sh "docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v \$(pwd)/.data:/var/lib/postgresql/data -v \$(pwd)/sql:/sql --name nd-db postgres:9.6"
+                 sh "cd node-docker-demo && docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v \$(pwd)/.data:/var/lib/postgresql/data -v \$(pwd)/sql:/sql --name nd-db postgres:9.6"
              }
          }
 
          stage('execute database shema script'){
              steps{
-                 sh "cd node-docker-demo/sql && ls && docker exec nd-db psql admin admin -f migrations.sql"
+                 sh "docker exec nd-db psql admin admin -f /sql/migrations.sql"
              }
          }
 
          stage('execute database data script'){
              steps{
-                 sh "cd node-docker-demo/sql && ls && docker exec nd-db psql admin admin -f seeds.sql"
+                 sh "docker exec nd-db psql admin admin -f /sql/seeds.sql"
              }
          }
 
