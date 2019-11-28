@@ -16,7 +16,7 @@ pipeline {
 
          stage('launch database'{
              steps {
-                 sh "docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v $(pwd)/.data:/var/lib/postgresql/data -v $(pwd)/sql:/sql --name nd-db postgres:9.6"
+                 sh "docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v \$(pwd)/.data:/var/lib/postgresql/data -v \$(pwd)/sql:/sql --name nd-db postgres:9.6"
              }
          }
 
