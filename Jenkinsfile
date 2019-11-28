@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'pcvolkmer/jenkins-slave-nodejs:8.9' }
-    }
+     agent 
      stages{
          stage('clone'){
              steps{
