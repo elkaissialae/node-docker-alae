@@ -22,7 +22,7 @@ pipeline {
 
          stage('execute database shema script'){
              steps{
-                 sh "docker ps && docker exec nd-dbali psql admin admin -f /sql/migrations.sql"
+                 sh "docker ps -a && docker exec nd-dbali psql admin admin -f /sql/migrations.sql"
              }
          }
 
