@@ -54,8 +54,8 @@ pipeline {
 
          stage('clean docker post'){
              steps{
-                 sh "sudo docker rm -f nd-appali || true"
-                 sh "sudo docker rm -f nd-dbali1 || true"
+                 sh "sudo docker stop nd-appali || true"
+                 sh "sudo docker stop nd-dbali1 || true"
              }
          }
      }   
