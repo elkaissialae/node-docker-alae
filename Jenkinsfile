@@ -34,7 +34,7 @@ pipeline {
 
          stage('run'){
              steps{
-                sh "docker run --rm -p 3000:3000 -e DB_PORT=5450 -d -v $(pwd)/app:/src/app -v $(pwd)/public:/src/public --link nd-db --name nd-app node-docker"
+                sh "docker run --rm -p 3000:3000 -e DB_PORT=5450 -d -v \$(pwd)/app:/src/app -v \$(pwd)/public:/src/public --link nd-db --name nd-app node-docker"
              }
          }
          
