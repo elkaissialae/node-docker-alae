@@ -52,6 +52,10 @@ pipeline {
              }
          }
 
+         catchError {
+            sh "echo 'fail'"
+        }
+
          stage('clean docker post'){
              steps{
                  sh "sudo docker stop nd-appali || true"
