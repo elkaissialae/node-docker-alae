@@ -18,7 +18,7 @@ pipeline {
          
          stage('docker'){
              steps{
-                 sh "cd node-docker-demo && sudo docker build -t node-docker ."
+                 sh "cd node-docker-demo && sudo docker build -t node-docker-ali ."
              }
          }
 
@@ -42,13 +42,13 @@ pipeline {
 
          stage('run'){
              steps{
-                sh "sudo docker run --rm -p 3303:3000 -e DB_PORT=5451 -d -v \$(pwd)/app:/src/app -v \$(pwd)/public:/src/public --link nd-dbali1 --name nd-appali node-docker"
+                sh "sudo docker run --rm -p 3303:3000 -e DB_PORT=5451 -d -v \$(pwd)/app:/src/app -v \$(pwd)/public:/src/public --link nd-dbali1 --name nd-appali node-docker-ali"
              }
          }
          
          stage('test'){
              steps{
-                sh "sleep 15"
+                sh "sleep 5"
              }
          }
 
@@ -56,7 +56,10 @@ pipeline {
              steps{
                  sh "sudo docker stop nd-appali || true"
                  sh "sudo docker stop nd-dbali1 || true"
+                 sh "sudo rm -rf *"
              }
          }
+
+         
      }   
 }
