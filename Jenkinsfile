@@ -51,5 +51,12 @@ pipeline {
                 sh "sleep 15 && docker ps -a && curl http://localhost:3303/"
              }
          }
+
+         stage('clean docker post'){
+             steps{
+                 sh "sudo docker rm -f nd-appali || true"
+                 sh "sudo docker rm -f nd-dbali1 || true"
+             }
+         }
      }   
 }
