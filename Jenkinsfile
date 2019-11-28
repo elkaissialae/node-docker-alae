@@ -18,7 +18,7 @@ pipeline {
 
          stage('launch database'{
              steps {
-                 sh "docker run -d --rm -p 5432:5432 -e POSTGRES_USER=admin -v $(pwd)/.data:/var/lib/postgresql/data -v $(pwd)/sql:/sql --name nd-db postgres:9.6"
+                 sh "docker run -d --rm -p 5450:5432 -e POSTGRES_USER=admin -v $(pwd)/.data:/var/lib/postgresql/data -v $(pwd)/sql:/sql --name nd-db postgres:9.6"
              }
          }
 
@@ -36,7 +36,7 @@ pipeline {
 
          stage('run'){
              steps{
-                sh "docker run --rm -p 3000:3000 -d -v $(pwd)/app:/src/app -v $(pwd)/public:/src/public --link nd-db --name nd-app node-docker"
+                sh "docker run --rm -p 3000:3000 -e DB_PORT=5450 -d -v $(pwd)/app:/src/app -v $(pwd)/public:/src/public --link nd-db --name nd-app node-docker"
              }
          }
          
