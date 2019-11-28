@@ -1,6 +1,16 @@
 pipeline {
      agent any
      stages{
+
+         stage('clean docker'){
+             steps{
+                 sh "sudo docker stop -f nd-appali"
+                 sh "sudo docker stop -f nd-dbali1"
+                 sh "sudo docker rm -f nd-appali"
+                 sh "sudo docker rm -f nd-dbali1"
+             }
+         }
+
          stage('clone'){
              steps{
                 sh "sudo rm -rf *"
