@@ -22,13 +22,13 @@ pipeline {
 
          stage('execute database shema script'){
              steps{
-                 sh "cd node-docker-demo/sql && ls && docker exec nd-db psql admin admin -f ./migrations.sql"
+                 sh "cd node-docker-demo/sql && ls && docker exec nd-db psql admin admin -f migrations.sql"
              }
          }
 
          stage('execute database data script'){
              steps{
-                 sh "cd node-docker-demo && docker exec nd-db psql admin admin -f /sql/seeds.sql"
+                 sh "cd node-docker-demo/sql && ls && docker exec nd-db psql admin admin -f seeds.sql"
              }
          }
 
