@@ -4,8 +4,8 @@ pipeline {
 
          stage('clean docker'){
              steps{
-                 sh "sudo docker rm -f nd-appali"
-                 sh "sudo docker rm -f nd-dbali1"
+                 sh "sudo docker rm -f nd-appali || true"
+                 sh "sudo docker rm -f nd-dbali1 || true"
              }
          }
 
